@@ -24,7 +24,7 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // res.json(md5Hash); // sending this as a response for now, making a POST route now
         yield (0, matrixController_1.postData)(md5Hash);
         // response object should have {Value: string, Cause: string, and Success: bool}
-        res.json({ matrixA: matrixController_1.matrixA, matrixB: matrixController_1.matrixB, result, md5Hash });
+        res.json({ md5Hash }); // so that I see a success when the GET to "/" works
     }
     catch (error) {
         console.error(error);
