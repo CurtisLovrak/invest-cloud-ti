@@ -6,7 +6,7 @@ If you fork this repo, run npm i, tsc, and then node dist/server.js to run up th
 
 I have my routes set up so that when you send the initial get request to the base URL, it will run all of the functionality in matrixController.ts.
 
-I have left some console logs through my code to explain my process, and what I was considering while building this application. I've left some tests in there that would definetely be left in a deployement ready application.
+I have left some comments through my code to explain my process, and what I was considering while building this application. I've left some tests in there that would definetely not be left in a deployement ready application.
 
 Currently, after my final POST request, my response is "{ Value: "Alas it didn't work", Cause: null, Success: true }" which confuses me, because everything is working how I believe the instructions ask me to. I'm making a concatinated string, columns FIRST, left to right. Then I'm hashing it and posting it, and I get a Success: true on the response. I have tried with spaces and not spaces in the string, since "no separators" was a little vague to me. Without spaces, I would find it a challenge to unhash and turn back into usable data, but that is the instructions, so I will leave it as that.
 
