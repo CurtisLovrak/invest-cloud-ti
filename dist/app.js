@@ -8,7 +8,4 @@ const matrixRoutes_1 = __importDefault(require("./routes/matrixRoutes"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use('/', matrixRoutes_1.default);
-// app.get('/', (req, res) => {
-//     res.send('Hello, World!');
-// });
 exports.default = app;
