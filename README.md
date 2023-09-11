@@ -16,4 +16,4 @@ The md5 hash algorithm is a fixed length, so I don't need any chunking.
 
 I could add more to my code, like error handling.
 
-I'm sure that if the error is with my code, that it's a formatting issue.
+I'm sure that if the error is with my code, that it's a formatting issue with the hashed string.
