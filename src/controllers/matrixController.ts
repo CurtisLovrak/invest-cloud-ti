@@ -26,7 +26,6 @@ export function multiplyMatricies(matrixA: number[][], matrixB: number[][]): str
 	let i: number, j: number, k: number, result: string = '';
     
   for (i = 0; i < l; i++) {
-    let acc: number[] = [];
     for (j = 0; j < l; j++) {
       let count: number = 0;
       for (k = 0; k < l; k++) {
