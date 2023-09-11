@@ -33,7 +33,6 @@ function multiplyMatricies(matrixA, matrixB) {
     const l = exports.matrixSize;
     let i, j, k, result = '';
     for (i = 0; i < l; i++) {
-        let acc = [];
         for (j = 0; j < l; j++) {
             let count = 0;
             for (k = 0; k < l; k++) {

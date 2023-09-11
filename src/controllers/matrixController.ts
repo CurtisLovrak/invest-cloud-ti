@@ -2,9 +2,9 @@ import axios from 'axios';
 
 export const matrixSize: number = 1000; // here you can reassign the matrix size globally for testing
 
-export const matrixA: any[] = []; // these are rows left to right, up to down, which is how I see them visually
+export const matrixA: number[][] = []; // these are rows left to right, up to down, which is how I see them visually
 
-export const matrixB: any[] = [];
+export const matrixB: number[][] = [];
 
 export async function fetchData(): Promise<void> {
 
