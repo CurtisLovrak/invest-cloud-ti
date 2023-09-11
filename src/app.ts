@@ -4,6 +4,11 @@ import matrixRoutes from './routes/matrixRoutes';
 const app = express();
 
 app.use(express.json());
-app.use('/api', matrixRoutes);
+app.use('/', matrixRoutes);
+
+// app.get('/', (req, res) => {
+//     res.send('Hello, World!');
+// });
+
 
 export default app;

@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-export const matrixSize: number = 1000; // here you can reassign the matrix size globally for testing
+export const matrixSize: number = 3; // here you can reassign the matrix size globally for testing
 
 export const matrixA: any[] = [];
 

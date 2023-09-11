@@ -27,15 +27,20 @@ import { fetchData, multiplyMatricies, matrixSize, matrixA, matrixB } from '../c
 
 const router = express.Router();
 
+router.get('/test', (req, res) => {
+	res.json({ message: 'Server is working!' });
+	console.log('test works')
+});
+
 router.get('/matrix', async (req, res) => {
-    try {
-        await fetchData(); // Call fetchData to populate matrixA and matrixB
-        const result = multiplyMatricies(matrixA, matrixB); // Perform matrix multiplication
-        res.json(result);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+  try {
+    await fetchData(); // Call fetchData to populate matrixA and matrixB
+    const result = multiplyMatricies(matrixA, matrixB); // Perform matrix multiplication
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 export default router;
