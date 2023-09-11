@@ -15,38 +15,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.multiplyMatricies = exports.fetchData = exports.matrixB = exports.matrixA = exports.matrixSize = void 0;
 const axios_1 = __importDefault(require("axios"));
-exports.matrixSize = 10; // here you can reassign the matrix size globally for testing
-exports.matrixA = [];
+exports.matrixSize = 3; // here you can reassign the matrix size globally for testing
+exports.matrixA = []; // these are rows left to right, up to down, which is how I see them visually
 exports.matrixB = [];
 function fetchData() {
     return __awaiter(this, void 0, void 0, function* () {
         yield axios_1.default.get(`https://recruitment-test.investcloud.com/api/numbers/init/${exports.matrixSize}`);
-        // const A: any[] = []; moved these to global variables
-        // const B: any[] = [];
         for (let idx = 0; idx < exports.matrixSize; idx++) {
             const responseA = yield axios_1.default.get(`https://recruitment-test.investcloud.com/api/numbers/A/row/${idx}`);
             const responseB = yield axios_1.default.get(`https://recruitment-test.investcloud.com/api/numbers/B/row/${idx}`);
             exports.matrixA.push(responseA.data.Value); //"Value" is the key on the JSON response object
             exports.matrixB.push(responseB.data.Value);
         }
-        // return { A, B }; removed return
     });
 }
 exports.fetchData = fetchData;
 function multiplyMatricies(matrixA, matrixB) {
-    const l = exports.matrixSize, result = [];
-    let i, j, k;
+    const l = exports.matrixSize;
+    let i, j, k, result = '';
     for (i = 0; i < l; i++) {
         let acc = [];
         for (j = 0; j < l; j++) {
             let count = 0;
             for (k = 0; k < l; k++) {
-                count += matrixA[i][k] * matrixB[k][j];
+                count += matrixA[j][k] * matrixB[k][i];
+                // the acc array becomes columns, up to down left to right
             }
-            acc.push(count);
+            result += count.toString() + ' ';
         }
-        result.push(acc);
+        // result.push(acc);
     }
-    return result;
+    return result.slice(0, -1); // this removes the last character in the result string, I find this best because 1: you're no reordering the indexes of the characters in the string, and 2: I'm not checking for a condition when I'm at the end of the loop every time.
+    // return result;
 }
 exports.multiplyMatricies = multiplyMatricies;
+/*
+[		 j					i			 j	k		 k  i
+    [a[0][0]*b[0][0] + a[0][1]*b[1][0] + a[0][2]*b[2][0], a[1][0]*b[0][0] + a[1][1]*b[1][0] + a[1][2]*b[2][0], a[2][0]*b[0][0] + a[2][1]*b[1][0] + a[2][2]*b[2][0]],
+    [a[0][0]*b[0][1] + a[0][1]*b[1][1] + a[0][2]*b[2][1], a[1][0]*b[0][1] + a[1][1]*b[1][1] + a[1][2]*b[2][1], a[2][0]*b[0][1] + a[2][1]*b[1][1] + a[2][2]*b[2][1]],
+    [a[0][0]*b[0][2] + a[0][1]*b[1][2] + a[0][2]*b[2][2], a[1][0]*b[0][2] + a[1][1]*b[1][2] + a[1][2]*b[2][2], a[2][0]*b[0][2] + a[2][1]*b[1][2] + a[2][2]*b[2][2]],
+]
+*/ 

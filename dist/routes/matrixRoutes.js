@@ -35,6 +35,8 @@ export default router;
 */
 // src/routes/matrixRoutes.ts
 const express_1 = __importDefault(require("express"));
+// import md5 from 'md5';
+const ts_md5_1 = require("ts-md5");
 const matrixController_1 = require("../controllers/matrixController");
 const router = express_1.default.Router();
 router.get('/test', (req, res) => {
@@ -45,7 +47,9 @@ router.get('/matrix', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         yield (0, matrixController_1.fetchData)(); // Call fetchData to populate matrixA and matrixB
         const result = (0, matrixController_1.multiplyMatricies)(matrixController_1.matrixA, matrixController_1.matrixB); // Perform matrix multiplication
-        res.json(result);
+        const md5Hash = ts_md5_1.Md5.hashStr(result);
+        res.json(md5Hash);
+        // res.json(result);
     }
     catch (error) {
         console.error(error);
